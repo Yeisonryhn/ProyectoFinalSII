@@ -14,7 +14,8 @@ class CreateModificationsTable extends Migration
     public function up()
     {
         Schema::create('modifications', function (Blueprint $table) {
-            //$table->bigIncrements('id');
+            $table->bigIncrements('id');
+            $table->date('modification_date')->useCurrent();
             $table->string('reason',200);
             $table->integer('user_id')->references('id')->on('users');
             $table->integer('table_id')->references('id')->on('tables');

@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class DBEngine extends Model
 {
-    //
+
+    protected $fillable = ['name'];
+
+    public function databases(){
+        return $this->belongsToMany('App\Database');
+    }
 }
