@@ -16,8 +16,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'password', 'name', 'last_name', 'email'
+        'username', 'password', 'name', 'last_name', 'email', 'role_id'
     ];
+
+    protected $attributes = ['role_id' => 1];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -38,7 +40,7 @@ class User extends Authenticatable
     ];
 
     public function role(){
-        return $this->hasOne('App\Role');
+        return $this->belongsTo('App\Role');
     }
 
     public function reportRequests(){

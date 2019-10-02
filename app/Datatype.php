@@ -10,6 +10,6 @@ class Datatype extends Model
     protected $fillable = ['name', 'weight', 'example'];
 
     public function fields(){
-        return $this->belongsToMany('App\Field');
+        return $this->hasMany('App\Field');
     }
 }

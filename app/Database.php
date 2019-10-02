@@ -10,7 +10,7 @@ class Database extends Model
     protected $fillable = ['name'];
     
     public function engine(){
-        return $this->hasOne('App\DBEngine');
+        return $this->belongsTo('App\DBEngine');
     }
 
     public function project(){
@@ -18,7 +18,7 @@ class Database extends Model
     }
 
     public function collation(){
-        return $this->hasOne('App\Collation');
+        return $this->belongsTo('App\Collation');
     }
 
     public function tables(){

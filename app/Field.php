@@ -10,7 +10,7 @@ class Field extends Model
     protected $fillable = ['name', 'length', 'default', 'null'];
 
     public function datatype(){
-        return $this->hasOne('App\Datatype');
+        return $this->belongsTo('App\Datatype');
     }
 
     public function table(){

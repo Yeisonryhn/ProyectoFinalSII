@@ -10,6 +10,6 @@ class DBEngine extends Model
     protected $fillable = ['name'];
 
     public function databases(){
-        return $this->belongsToMany('App\Database');
+        return $this->hasMany('App\Database');
     }
 }

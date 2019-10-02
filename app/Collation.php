@@ -10,6 +10,6 @@ class Collation extends Model
     protected $fillable = ['description'];
 
     public function databases(){
-        return $this->belongsToMany('App\Database');
+        return $this->hasMany('App\Database');
     }
 }

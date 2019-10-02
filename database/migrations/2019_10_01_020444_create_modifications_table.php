@@ -19,7 +19,7 @@ class CreateModificationsTable extends Migration
             $table->string('reason',200);
             $table->integer('user_id')->references('id')->on('users');
             $table->integer('table_id')->references('id')->on('tables');
-            $table->primary(['user_id', 'table_id']);
+            //$table->primary(['user_id', 'table_id']);
             $table->timestamps();
         });
     }
