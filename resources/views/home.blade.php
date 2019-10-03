@@ -35,15 +35,15 @@
         </p>
         </div>
         <div class="col">
-            <div class="border rounded m-2 p-4">
+            <div class="border rounded m-2 p-4 bg-white">
                 <h3>Gestión de Tipos de Datos</h3><hr>
                 <div class=" d-flex justify-content-around">
-                    <a href="" class="btn border border-success">Crear</a>
-                    <a href="" class="btn border border-warning">Modificar</a>
-                    <a href="" class="btn border border-danger">Eliminar</a>
+                <a href="{{ route('createDatatype') }}" class="btn border border-success">Crear</a>
+                <a href="{{ route('indexModifyDatatype') }}" class="btn border border-warning">Modificar</a>
+                <a href="{{ route('indexDeleteDatatype') }}" class="btn border border-danger">Eliminar</a>
                 </div>
             </div>
-            <div class="border rounded m-2 p-4">
+            <div class="border rounded m-2 p-4 bg-white">
                 <h3>Gestión de Roles</h3><hr>
                 <div class=" d-flex justify-content-around">
                 <a href="{{ route('createRole') }}" class="btn border border-success">Crear</a>
@@ -51,7 +51,7 @@
                 <a href="{{route('indexDeleteRole')}}" class="btn border border-danger">Eliminar</a>
                 </div>
             </div>
-            <div class="border rounded m-2 p-4">
+            <div class="border rounded m-2 p-4 bg-white">
                 <h3>Gestión de Cotejamientos</h3><hr>
                 <div class=" d-flex justify-content-around">
                     <a href="" class="btn border border-success">Crear</a>
@@ -59,7 +59,7 @@
                     <a href="" class="btn border border-danger">Eliminar</a>
                 </div>
             </div>
-            <div class="border rounded m-2 p-4">
+            <div class="border rounded m-2 p-4 bg-white">
                     <h3>Gestión Motores de Bases de Datos</h3><hr>
                     <div class=" d-flex justify-content-around">
                         <a href="" class="btn border border-success">Crear</a>

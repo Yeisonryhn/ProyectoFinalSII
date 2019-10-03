@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col my-auto">                            
                             <div class="row m-2">
-                                <input id="description" placeholder="{{ __('Descripción') }}" type="text" class="form-control @error('name') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description" autofocus>
+                                <input id="description" placeholder="{{ __('Descripción') }}" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description" autofocus>
                             </div>                                
                             <div class="form-group row"> 
                                 <a href="{{ route('home') }}" class="btn border border-primary mx-auto my-2">Volver</a>                                                        

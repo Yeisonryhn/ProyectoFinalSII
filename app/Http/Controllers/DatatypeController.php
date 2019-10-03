@@ -14,7 +14,22 @@ class DatatypeController extends Controller
      */
     public function index()
     {
-        //
+        $datatypes = Datatype::all();
+
+        return view('datatypes.index', ['datatypes' => $datatypes ]);
+    }
+
+    public function indexModify()
+    {
+        $datatypes = Datatype::all();
+
+        return view('datatypes.indexModify', ['datatypes' => $datatypes ]);
+    }
+    public function indexDelete()
+    {
+        $datatypes = Datatype::all();
+
+        return view('datatypes.indexDelete', ['datatypes' => $datatypes ]);
     }
 
     /**
@@ -24,7 +39,7 @@ class DatatypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('datatypes.create');
     }
 
     /**
@@ -35,7 +50,19 @@ class DatatypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'name' => ['required', 'string', 'max:20'],
+            'weight' => ['required', 'integer'],
+            'example' => ['required', 'string', 'max:40']
+        ]);
+
+        Datatype::create([
+            'name' => $data['name'],
+            'weight' => $data['weight'],
+            'example' => $data['example'],
+        ]);
+
+        return redirect()->route('home');
     }
 
     /**
@@ -57,7 +84,7 @@ class DatatypeController extends Controller
      */
     public function edit(Datatype $datatype)
     {
-        //
+        return view('datatypes.edit',['datatype' => $datatype]);
     }
 
     /**
@@ -69,7 +96,15 @@ class DatatypeController extends Controller
      */
     public function update(Request $request, Datatype $datatype)
     {
-        //
+        $data = request()->validate([
+            'name' => ['required', 'string', 'max:20'],
+            'weight' => ['required', 'integer'],
+            'example' => ['required', 'string', 'max:40']
+        ]);
+        
+        $datatype->update($data);
+        $datatypes = Datatype::all();
+        return redirect()->route('indexModifyDatatype', ['datatypes' => $datatypes]);
     }
 
     /**
@@ -80,6 +115,7 @@ class DatatypeController extends Controller
      */
     public function destroy(Datatype $datatype)
     {
-        //
+        $datatype->delete();
+        return redirect()->route('indexDeleteDatatype');
     }
 }
