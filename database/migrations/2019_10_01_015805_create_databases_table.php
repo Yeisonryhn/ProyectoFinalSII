@@ -18,7 +18,7 @@ class CreateDatabasesTable extends Migration
             $table->string('name',20);
             $table->date('creation_date')->useCurrent();//Ojo con este método, es una prueba
             $table->integer('db_engine_id')->references('id')->on('d_b_engines');
-            $table->integer('project_id')->references('id')->on('projects');
+            $table->integer('project_id')->references('id')->on('projects')->onDelete('cascade');
             $table->integer('collation_id')->references('id')->on('collations');
             $table->timestamps();
         });

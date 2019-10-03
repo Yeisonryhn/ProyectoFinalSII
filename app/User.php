@@ -19,7 +19,7 @@ class User extends Authenticatable
         'username', 'password', 'name', 'last_name', 'email', 'role_id'
     ];
 
-    protected $attributes = ['role_id' => 1];
+    protected $attributes = ['role_id' => 2];//Todos los usuarios creados desde Registro tienen el valor por defecto 2
 
     /**
      * The attributes that should be hidden for arrays.
