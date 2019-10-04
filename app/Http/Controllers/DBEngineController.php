@@ -14,7 +14,18 @@ class DBEngineController extends Controller
      */
     public function index()
     {
-        //
+        $dBEngine=DBEngine::all();
+        return view('engines.index',['dBEngines' => $dBEngine]);
+    }
+    public function indexModify()
+    {
+        $dBEngine=DBEngine::all();
+        return view('engines.indexModify',['dBEngines' => $dBEngine]);
+    }
+    public function indexDelete()
+    {
+        $dBEngine=DBEngine::all();
+        return view('engines.indexDelete',['dBEngines' => $dBEngine]);
     }
 
     /**
@@ -24,7 +35,7 @@ class DBEngineController extends Controller
      */
     public function create()
     {
-        //
+        return view('engines.create');
     }
 
     /**
@@ -35,7 +46,14 @@ class DBEngineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'name' => ['string', 'required', 'max:20']
+        ]);
+
+        DBEngine::create([
+            'name' => $data['name']
+        ]);
+        return redirect()->route('home');
     }
 
     /**
@@ -57,7 +75,7 @@ class DBEngineController extends Controller
      */
     public function edit(DBEngine $dBEngine)
     {
-        //
+        return view('engines.edit', [ 'dBEngine' => $dBEngine ] );
     }
 
     /**
@@ -69,7 +87,11 @@ class DBEngineController extends Controller
      */
     public function update(Request $request, DBEngine $dBEngine)
     {
-        //
+        $data = request()->validate([
+            'name' => ['string', 'required', 'max:20']
+        ]);
+        $dBEngine->update($data);
+        return redirect()->route('indexModifyDBEngine');
     }
 
     /**
@@ -80,6 +102,7 @@ class DBEngineController extends Controller
      */
     public function destroy(DBEngine $dBEngine)
     {
-        //
+        $dBEngine->delete();
+        return redirect()->route('indexDeleteDBEngine');
     }
 }

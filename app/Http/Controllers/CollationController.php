@@ -14,7 +14,18 @@ class CollationController extends Controller
      */
     public function index()
     {
-        //
+        $collations = Collation::all();
+        return view('collations.index',['collations'=>$collations]);
+    }
+    public function indexModify()
+    {
+        $collations = Collation::all();
+        return view('collations.indexModify',['collations'=>$collations]);
+    }
+    public function indexDelete()
+    {
+        $collations = Collation::all();
+        return view('collations.indexDelete',['collations'=>$collations]);
     }
 
     /**
@@ -24,7 +35,7 @@ class CollationController extends Controller
      */
     public function create()
     {
-        //
+        return view('collations.create');
     }
 
     /**
@@ -35,7 +46,15 @@ class CollationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'description' => ['required', 'string', 'max:20']
+        ]);
+
+        Collation::create([
+            'description' => $data['description']
+        ]);
+
+        return redirect()->route('home');
     }
 
     /**
@@ -57,7 +76,7 @@ class CollationController extends Controller
      */
     public function edit(Collation $collation)
     {
-        //
+        return view('collations.edit',['collation' => $collation]);
     }
 
     /**
@@ -69,7 +88,11 @@ class CollationController extends Controller
      */
     public function update(Request $request, Collation $collation)
     {
-        //
+        $data = request()->validate([
+            'description' => ['required', 'string', 'max:20']
+        ]);
+        $collation->update($data);
+        return redirect()->route('indexModifyCollation');
     }
 
     /**
@@ -80,6 +103,7 @@ class CollationController extends Controller
      */
     public function destroy(Collation $collation)
     {
-        //
+        $collation->delete();
+        return redirect()->route('indexDeleteCollation');
     }
 }

@@ -100,8 +100,7 @@ class RoleController extends Controller
             'description'=>['required', 'string','max:20'],
         ]);
         $role->update($data);          
-        $roles = Role::all();
-        return redirect()->route('indexModifyRole', ['roles' => $roles]);
+        return redirect()->route('indexModifyRole');
     }
 
     /**

@@ -5,10 +5,10 @@
     <div>
         <ul class="nav nav-tabs justify-content-center">
             <li class="nav-item">
-                <a class="nav-link active" href="{{ route('home') }}">Gestion de Parametrización</a>
+                <a class="nav-link" href="{{ route('home') }}">Gestion de Parametrización</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('home2')}}">Administracion</a>
+                <a class="nav-link active" href="{{route('home2')}}">Administracion</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Reportes</a>
@@ -22,7 +22,7 @@
     @endif
     <div class="row m-4">
         <div class="col my-auto bg-secondary rounded text-light text-center">
-            <h2 class="m-4">Gestión de Parametrización</h2>
+            <h2 class="m-4">Gestión de Administración</h2>
             <p class="m-3 text-left">Bienvenido Administrador <strong>{{Auth::user()->name }} {{ Auth::user()->last_name }}</strong>,
             en esta seccion usted podrá realizar tareas de Gestión de como registrar, eliminar y modificar
             la informacion que se lista al lado derecho, tenga en cuenta que es probable que usted no necesite tocar 

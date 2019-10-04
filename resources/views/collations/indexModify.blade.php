@@ -2,19 +2,15 @@
 
 @section('content')
     <section class="container align-center">
-        <h2 class="text-center">Listado de Tipos de Datos</h2>
+        <h2 class="text-center">Listado de Cotejamientos</h2>
         <div class="d-flex flex-wrap justify-content-center">
-            @forelse ($datatypes as $datatype)
-            <article class="bg-white border rounded m-4 w-100 p-4">
+            @forelse ($collations as $collation)
+            <article class="bg-white border rounded m-4 w-25 p-4">
                 <p class="mb-1">
-                    <strong>Nombre: </strong>{{$datatype->id}} 
-                    <strong>Peso: </strong>{{$datatype->description}} 
-                    <strong>Ejemplo: </strong>{{$datatype->description}} 
+                    <strong>Tipo de dato: </strong>{{$collation->description}}&nbsp;&nbsp;&nbsp;                     
                 </p>
                 <div class="d-flex justify-content-center">
-                    <a href="{{ route('destroyDatatype', $datatype ) }}" class="btn border border-warning   mx-auto">Eliminar</a>
-                    <a href="{{ route('editDatatype', $datatype) }}" class="btn border border-danger">Eliminar</a>
-                    <a href="" class="btn border border-success">Detalle</a>
+                    <a href="{{ route('editCollation', $collation ) }}" class="btn border border-warning   mx-auto">Modificar</a>
                 </div>
             </article>    
             @empty
