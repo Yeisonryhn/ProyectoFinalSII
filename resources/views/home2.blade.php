@@ -36,35 +36,40 @@
         </div>
         <div class="col">
             <div class="border rounded m-2 p-4 bg-white">
-                <h3>Gestión de Tipos de Datos</h3><hr>
+                <h3>Cuentas</h3><hr>
                 <div class=" d-flex justify-content-around">
-                <a href="{{ route('createDatatype') }}" class="btn border border-success">Crear</a>
-                <a href="{{ route('indexModifyDatatype') }}" class="btn border border-warning">Modificar</a>
-                <a href="{{ route('indexDeleteDatatype') }}" class="btn border border-danger">Eliminar</a>
+                    <a href="" class="btn border border-success">Crear</a>
+                    <a href="" class="btn border border-warning">Modificar</a>
+                    <a href="" class="btn border border-danger">Eliminar</a>
                 </div>
             </div>
             <div class="border rounded m-2 p-4 bg-white">
-                <h3>Gestión de Roles</h3><hr>
+                <h3>Clientes</h3><hr>
+                <div class=" d-flex justify-content-around">
+                    <a href="{{ route('clients.create') }}" class="btn border border-success">Crear</a>                    
+                    <a href="{{ route('clients.index') }}" class="btn border border-primary">Mostrar</a>
+                </div>
+            </div>
+            <div class="border rounded m-2 p-4 bg-white">
+                    <h3>Proyectos</h3><hr>
+                    <div class=" d-flex justify-content-around">
+                        <a href="{{ route('projects.create') }}" class="btn border border-success">Crear</a>                    
+                        <a href="{{ route('projects.index') }}" class="btn border border-primary">Mostrar</a>
+                    </div>
+                </div>
+            <div class="border rounded m-2 p-4 bg-white">
+                <h3>Bases de Datos</h3><hr>
+                <div class=" d-flex justify-content-around">
+                    <a href="{{ route('databases.create')}}" class="btn border border-success">Crear</a>
+                    <a href="{{ route('databases.index') }}" class="btn border border-primary">Mostrar</a>
+                </div>
+            </div>            
+            <div class="border rounded m-2 p-4 bg-white">
+                <h3>Tablas</h3><hr>
                 <div class=" d-flex justify-content-around">
                 <a href="{{ route('createRole') }}" class="btn border border-success">Crear</a>
                     <a href="{{ route('indexModifyRole') }}" class="btn border border-warning">Modificar</a>
                 <a href="{{route('indexDeleteRole')}}" class="btn border border-danger">Eliminar</a>
-                </div>
-            </div>
-            <div class="border rounded m-2 p-4 bg-white">
-                <h3>Gestión de Cotejamientos</h3><hr>
-                <div class=" d-flex justify-content-around">
-                    <a href="{{ route('createCollation')}}" class="btn border border-success">Crear</a>
-                    <a href="{{ route('indexModifyCollation')}}" class="btn border border-warning">Modificar</a>
-                    <a href="{{ route('indexDeleteCollation')}}" class="btn border border-danger">Eliminar</a>
-                </div>
-            </div>
-            <div class="border rounded m-2 p-4 bg-white">
-                <h3>Gestión Motores de Bases de Datos</h3><hr>
-                <div class=" d-flex justify-content-around">
-                    <a href="{{ route('createDBEngine') }}" class="btn border border-success">Crear</a>
-                    <a href="{{ route('indexModifyDBEngine')}}" class="btn border border-warning">Modificar</a>
-                    <a href="{{ route('indexDeleteDBEngine')}}" class="btn border border-danger">Eliminar</a>
                 </div>
             </div>
         </div>

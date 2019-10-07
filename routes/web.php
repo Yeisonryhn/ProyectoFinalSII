@@ -42,3 +42,8 @@ Route::post('dbengines/create', 'DBEngineController@store')->name('storeDBEngine
 Route::get('dbengines/{dBEngine}/edit', 'DBEngineController@edit')->name('editDBEngine');
 Route::put('dbengines/{dBEngine}', 'DBEngineController@update')->name('updateDBEngine');
 Route::delete('dbengines/{dBEngine}', 'DBEngineController@destroy')->name('destroyDBEngine');
+
+
+Route::resource('clients', 'ClientController');
+Route::resource('projects', 'ProjectController');
+Route::resource('databases', 'DatabaseController');

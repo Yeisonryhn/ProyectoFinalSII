@@ -17,7 +17,7 @@ class CreateProjectsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name',20);
             $table->string('url',100);
-            $table->integer('client_id')->references('id')->on('clients');
+            $table->integer('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->timestamps();
         });
     }

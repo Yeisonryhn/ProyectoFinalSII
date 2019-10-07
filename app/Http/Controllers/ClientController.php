@@ -14,7 +14,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $clients= Client::all();
+        return view('clients.index',['clients' => $clients]);
     }
 
     /**
@@ -24,7 +25,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('clients.create');
     }
 
     /**
@@ -35,7 +36,20 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $data = request()->validate([
+            'name' => ['required', 'string', 'max:20'],
+            'last_name' =>  ['required', 'string', 'max:20'],
+            'identity_card_number' => ['required', 'string', 'max:10']
+        ]);
+
+        Client::create([
+            'name' => $data['name'],
+            'last_name' => $data['last_name'],
+            'identity_card_number' => $data['identity_card_number']
+        ]);
+
+        return redirect()->route('clients.index');
     }
 
     /**
@@ -57,7 +71,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        return view('clients.edit', ['client' => $client]);
     }
 
     /**
@@ -69,7 +83,15 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+        $data = request()->validate([
+            'name' => ['required', 'string', 'max:20'],
+            'last_name' =>  ['required', 'string', 'max:20'],
+            'identity_card_number' => ['required', 'string', 'max:10']
+        ]);
+        
+        $client->update($data);
+        
+        return redirect()->route('clients.index');
     }
 
     /**
@@ -80,6 +102,7 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        $client->delete();
+        return redirect()->route('clients.index');
     }
 }

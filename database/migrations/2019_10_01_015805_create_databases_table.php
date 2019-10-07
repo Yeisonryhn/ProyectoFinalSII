@@ -17,9 +17,9 @@ class CreateDatabasesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name',20);
             $table->date('creation_date')->useCurrent();//Ojo con este método, es una prueba
-            $table->integer('db_engine_id')->references('id')->on('d_b_engines');
+            $table->integer('db_engine_id')->references('id')->on('d_b_engines')->onDelete('cascade');
             $table->integer('project_id')->references('id')->on('projects')->onDelete('cascade');
-            $table->integer('collation_id')->references('id')->on('collations');
+            $table->integer('collation_id')->references('id')->on('collations')->onDelete('cascade');
             $table->timestamps();
         });
     }

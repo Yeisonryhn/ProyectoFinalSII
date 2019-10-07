@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\Client;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -14,7 +15,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::all();
+        return view('projects.index', ['projects' => $projects]);
     }
 
     /**
@@ -24,7 +26,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        $clients = Client::all();
+        return view('projects.create',['clients' => $clients]);
     }
 
     /**
@@ -35,7 +38,19 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request);
+        $data = request()->validate([
+            'name' => ['required','string', 'max:20'],
+            'url' => ['required','string', 'max:100'],
+            'client_id' => ['required','string', 'max:20', 'exists:clients,id'],
+        ]);
+        //dd($data);
+        Project::create([
+            'name' => $data['name'],
+            'url' => $data['url'],
+            'client_id' => $data['client_id']
+        ]);
+        return redirect()->route('projects.index');
     }
 
     /**
@@ -57,9 +72,13 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        $clients = Client::all();
+        return view('projects.edit',[
+            'project' => $project,
+            'clients' => $clients
+            ]);
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -69,7 +88,13 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $data = request()->validate([
+            'name' => ['required','string', 'max:20'],
+            'url' => ['required','string', 'max:100'],
+            'client_id' => ['required','string', 'max:20', 'exists:clients,id'],
+        ]);
+        $project->update($data);
+        return redirect()->route('projects.index');
     }
 
     /**
@@ -80,6 +105,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect()->route('projects.index');
     }
 }
