@@ -18,7 +18,10 @@ class DatabaseSeeder extends Seeder
             'clients',
             'datatypes',
             'projects',
-            'users'
+            'users',
+            'databases',
+            'fields',
+            'tables'
 
         ]);
         $this->call(DBEngineSeeder::class);
@@ -28,6 +31,9 @@ class DatabaseSeeder extends Seeder
         $this->call(DatatypeSeeder::class);
         $this->call(ProjectSeeder::class);
         $this->call(UsersTableSeeder::class);
+        $this->call(DatabaseTableSeeder::class);
+        $this->call(TableSeeder::class);
+        $this->call(FieldsTableSeeder::class);
     }
 
     protected function truncateTables(array $tables){

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Field;
+use App\Table;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class FieldController extends Controller
 {
     /**
@@ -12,9 +13,15 @@ class FieldController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $table=$request->table;
+        $fields = Field::where('table_id', "$table")->get();
+        
+        return view('fields.index',[
+            'table'=>$table,
+            'fields'=>$fields
+        ]);
     }
 
     /**
@@ -80,6 +87,6 @@ class FieldController extends Controller
      */
     public function destroy(Field $field)
     {
-        //
+        
     }
 }

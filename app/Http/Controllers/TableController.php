@@ -17,6 +17,7 @@ class TableController extends Controller
     public function index()
     {
         $tables = Table::all();
+        
         return view('tables.index',['tables'=> $tables]);
     }
 
@@ -103,7 +104,16 @@ class TableController extends Controller
      */
     public function edit(Table $table)
     {
-        //
+        $manyDatabases = false;
+        $databases=Database::all();
+        if(sizeof($databases) > 0){
+            $manyDatabases = true;
+        }
+        return view('tables.edit',[
+            'table' => $table,
+            'databases' => $databases,
+            'manyDatabases' => $manyDatabases,
+        ]);
     }
 
     /**
@@ -115,7 +125,13 @@ class TableController extends Controller
      */
     public function update(Request $request, Table $table)
     {
-        //
+        $data = request()->validate([
+            'name'=>['required', 'string', 'max:20'],
+            'database_id' =>['required', 'integer', 'exists:databases,id']
+        ]);
+        $table->update($data);
+
+        return redirect()->route('tables.index');
     }
 
     /**
@@ -126,6 +142,7 @@ class TableController extends Controller
      */
     public function destroy(Table $table)
     {
-        //
+        $table->delete();
+        return redirect()->route('tables.index');
     }
 }

@@ -48,3 +48,4 @@ Route::resource('clients', 'ClientController');
 Route::resource('projects', 'ProjectController');
 Route::resource('databases', 'DatabaseController');
 Route::resource('tables', 'TableController');
+Route::resource('fields', 'FieldController');

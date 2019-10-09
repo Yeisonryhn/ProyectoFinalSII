@@ -1,23 +1,27 @@
 @extends('layouts.app')
 @section('content')
 <section class="container">
-  <h2 class="text-center text-dark m-4">Listado de Tablas</h2>
+  <h2 class="text-center text-dark m-4">Listado de Campos de la tabla <strong>{{$fields[1]->table->name}}</strong></h2>
   <table class="table w-100 mx-auto">
     <thead>
       <tr>
         <th scope="col">Nombre</th>
-        <th scope="col">Fecha de Creacion</th>
-        <th scope="col">Base de Datos</th>
+        <th scope="col">Longitud</th>
+        <th scope="col">Predeterminado</th>
+        <th scope="col">Nulo</th>
+        <th scope="col">Tipo de Dato</th>
         <th scope="col">Opciones</th>
       </tr>
     </thead>    
     <tbody>
     
-    @foreach($tables as $table)
+    @foreach($fields as $field)
       <tr>        
-          <td>{{$table->name}}</td>
-          <td>{{$table->creation_date}}</td>
-          <td>{{$table->database->name}}</td>
+          <td>{{$field->name}}</td>
+          <td>{{$field->length}}</td>
+          <td>{{$field->default}}</td>
+          <td>{{$field->null}}</td>
+          <<td>{{$field->datatype->name}}</td>
           <td>    
           <form method="POST" action="{{ route('tables.destroy',$table)}}">
               <div class="form_control">
@@ -27,7 +31,7 @@
                   <a href="{{ route('tables.edit', $table)}}" class="btn border border-warning">Modificar</a>
                   <button type="submit" class="btn border border-danger">Eliminar</button>
                   <a href="{{ route('fields.create', ['table'=>$table])}}" class="btn border border-primary">Agregar Campo</a>
-                  <a href="{{ route('fields.index', ['table'=>$table])}}" class="btn border border-primary">Mostrar Campos</a>
+                  
               </div>
           </form>
           </td>
@@ -41,7 +45,7 @@
 
     <tbody></tbody>
     </table>
-    @if ( sizeof($tables) == 0)
+    @if ( sizeof($fields) == 0)
          
       <article class="bg-white border rounded m-4 w-100 mx-auto p-4">
         <p class="mb-1">
