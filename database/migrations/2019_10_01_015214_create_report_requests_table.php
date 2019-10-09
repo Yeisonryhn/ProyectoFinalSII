@@ -14,11 +14,13 @@ class CreateReportRequestsTable extends Migration
     public function up()
     {
         Schema::create('report_requests', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->date('creation_date')->useCurrent();//Ojo con este método, es una prueba
             $table->date('requested_date');
-            $table->integer('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

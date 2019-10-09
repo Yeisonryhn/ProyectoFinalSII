@@ -14,8 +14,9 @@ class CreateCollationsTable extends Migration
     public function up()
     {
         Schema::create('collations', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->string('description',20);
+            $table->string('description',40);
             $table->timestamps();
         });
     }

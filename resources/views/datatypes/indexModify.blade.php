@@ -7,7 +7,7 @@
             @forelse ($datatypes as $datatype)
             <article class="bg-white border rounded m-4 w-25 p-4">
                 <p class="mb-1">
-                    <strong>Tipo de dato: </strong>{{$datatype->name}}&nbsp;&nbsp;&nbsp; 
+                    <strong>Nombre: </strong>{{$datatype->name}}&nbsp;&nbsp;&nbsp; 
                     <strong>Peso: </strong>{{$datatype->weight}}&nbsp;&nbsp;&nbsp;
                     <strong>Ejemplo: </strong>{{$datatype->example}}&nbsp;&nbsp;&nbsp;
                 </p>

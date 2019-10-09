@@ -14,13 +14,17 @@ class CreateDatabasesTable extends Migration
     public function up()
     {
         Schema::create('databases', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->string('name',20);
+            $table->string('name',40);
             $table->date('creation_date')->useCurrent();//Ojo con este método, es una prueba
-            $table->integer('db_engine_id')->references('id')->on('d_b_engines')->onDelete('cascade');
-            $table->integer('project_id')->references('id')->on('projects')->onDelete('cascade');
-            $table->integer('collation_id')->references('id')->on('collations')->onDelete('cascade');
+            $table->unsignedBigInteger('d_b_engine_id');
+            $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('collation_id');
             $table->timestamps();
+            $table->foreign('d_b_engine_id')->references('id')->on('d_b_engines')->onDelete('cascade');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade')->unique();
+            $table->foreign('collation_id')->references('id')->on('collations')->onDelete('cascade');
         });
     }
 

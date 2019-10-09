@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Database extends Model
 {
 
-    protected $fillable = ['name','creation_date','db_engine_id','project_id','collation_id'];
+    protected $fillable = ['name','creation_date','d_b_engine_id','project_id','collation_id'];
     
-    public function engine(){
+    public function dBEngine(){
         return $this->belongsTo('App\DBEngine');
     }
 

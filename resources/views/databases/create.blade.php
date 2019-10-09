@@ -12,13 +12,10 @@
               <div class="row">
                 <div class="col my-auto">                            
                   <div class="row m-2">
-                      <input placeholder="{{ __('Nombre') }}" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                      <input placeholder="{{ __('Nombre') }}" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autofocus>
                   </div>                                
-                  <!--<div class="row m-2">
-                      <input placeholder="{{ __('Fecha de Creacion') }}" type="date" class="form-control @error('creation_date') is-invalid @enderror" name="creation_date" value="{{ old('creation_date') }}" required autocomplete="creation_date" autofocus>
-                  </div>!-->  
                   <div class="row m-2">
-                      <select class="form-control" id="exampleFormControlSelect1" name="db_engine_id">
+                      <select class="form-control" id="exampleFormControlSelect1" name="d_b_engine_id">
                         @foreach ($dBEngines as $dBEngine)
                           <option value="{{ $dBEngine->id }}">{{$dBEngine->name}}</option>           
                         @endforeach
@@ -58,23 +55,27 @@
           @endif              
          @else
           @if (sizeof($dBEngines) == 0)
-            <article class="bg-white border rounded m-4 w-100 p-4">
+            <article class="bg-white border rounded m-4  p-4">
               <p class="mb-1">
                 <strong>No hay Motores de Bases de Datos Registradas de el sistema</strong>
+                <a href="{{ route('createDBEngine') }}" class="btn border border-primary mx-4">Crear</a>
               </p>
             </article>              
           @endif
           @if (sizeof($collations) == 0)
-            <article class="bg-white border rounded m-4 w-100 p-4">
+            <article class="bg-white border rounded m-4  p-4">
               <p class="mb-1">
                 <strong>No hay Cotejamientos Registradas de el sistema</strong>
+                <a href="{{ route('createCollation') }}" class="btn border border-primary mx-4">Crear</a>
               </p>
             </article>
           @endif
           @if (sizeof($projects) == 0)
-            <article class="bg-white border rounded m-4 w-100 p-4">
+            <article class="bg-white border rounded m-4 p-4">
               <p class="mb-1">
-                <strong>No hay proyectos disponibles en el sistema, debe crear primero un proyecto.</strong>
+                <strong>No hay proyectos disponibles en el sistema o ya estan asociados a una base de datos, debe crear primero un proyecto.</strong>
+                <a href="{{ route('projects.create') }}" class="btn border border-primary mx-4">Crear</a>
+                
               </p>
             </article>              
           @endif

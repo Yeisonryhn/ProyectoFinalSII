@@ -13,14 +13,16 @@ class CreateModificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('modifications', function (Blueprint $table) {
+        Schema::create('modifications', function (Blueprint $table) {      
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->date('modification_date')->useCurrent();
             $table->string('reason',200);
-            $table->integer('user_id')->references('id')->on('users');
-            $table->integer('table_id')->references('id')->on('tables');
-            //$table->primary(['user_id', 'table_id']);
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('table_id');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('table_id')->references('id')->on('tables')->onDelete('cascade');
         });
     }
 

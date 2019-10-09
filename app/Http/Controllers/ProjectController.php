@@ -91,7 +91,7 @@ class ProjectController extends Controller
         $data = request()->validate([
             'name' => ['required','string', 'max:20'],
             'url' => ['required','string', 'max:100'],
-            'client_id' => ['required','string', 'max:20', 'exists:clients,id'],
+            'client_id' => ['required','integer', 'max:20', 'exists:clients,id'],
         ]);
         $project->update($data);
         return redirect()->route('projects.index');

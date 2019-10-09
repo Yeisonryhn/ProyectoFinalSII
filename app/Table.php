@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Table extends Model
 {
 
-    protected $fillable = ['name','creation_date'];
+    protected $fillable = ['name','creation_date','database_id'];
 
     public function fields(){
         return $this->hasMany('App\Field');
@@ -22,12 +22,12 @@ class Table extends Model
     }
 
     //OJO CON ESTE MÉTODO, ES MANY TO MANY
-    public function tables(){
+    /*public function tables(){
         return $this->hasMany('App\Table');
     }
     public function table(){
         return $this->belongsTo('App\Table');
-    }
+    }*/
 
     
 }

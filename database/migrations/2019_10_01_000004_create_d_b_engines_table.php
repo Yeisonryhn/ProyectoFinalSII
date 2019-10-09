@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTablesTable extends Migration
+class CreateDBEnginesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateTablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tables', function (Blueprint $table) {
+        Schema::create('d_b_engines', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->string('name',20);
-            $table->date('creation_date');
-            $table->integer('database_id')->references('id')->on('databases')->onDelete('cascade');
-            $table->integer('table_id')->nullable(true)->references('id')->on('tables')->onDelete('cascade');
+            $table->string('name',40);
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateTablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tables');
+        Schema::dropIfExists('d_b_engines');
     }
 }

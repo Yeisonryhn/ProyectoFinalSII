@@ -7,7 +7,7 @@
             @forelse ($collations as $collation)
             <article class="bg-white border rounded m-4 w-25 p-4">
                 <p class="mb-1">
-                    <strong>Tipo de dato: </strong>{{$collation->description}}&nbsp;&nbsp;&nbsp;                     
+                    <strong>Nombre: </strong>{{$collation->description}}&nbsp;&nbsp;&nbsp;                     
                 </p>
                 <div class="d-flex justify-content-center">
                     <form action="{{route('destroyCollation', $collation)}}" method="POST">

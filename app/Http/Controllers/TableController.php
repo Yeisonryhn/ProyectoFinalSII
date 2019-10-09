@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Table;
+use App\Database;
 use Illuminate\Http\Request;
 
 class TableController extends Controller
@@ -14,7 +16,8 @@ class TableController extends Controller
      */
     public function index()
     {
-        //
+        $tables = Table::all();
+        return view('tables.index',['tables'=> $tables]);
     }
 
     /**
@@ -22,9 +25,33 @@ class TableController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create(Request $request)
+    {   
+        $manyDatabases = false;
+        $singleDatabase = false;
+        $database=$request->database;
+
+        if($database != null){
+
+            $singleDatabase = true;
+            return view('tables.create',[
+                'database'=>$database,
+                'singleDatabase' => $singleDatabase,
+                'manyDatabases' => $manyDatabases
+                ]);
+
+        }else{
+
+            $databases=Database::all();
+            if(sizeof($databases) > 0){
+                $manyDatabases = true;
+            }
+            return view('tables.create',[
+                'databases'=>$databases,
+                'singleDatabase' => $singleDatabase,
+                'manyDatabases' => $manyDatabases
+                ]);
+        }
     }
 
     /**
@@ -35,7 +62,26 @@ class TableController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $database=$request->database;
+        if($database == null){
+            $data = request()->validate([
+                'name'=>['required', 'string', 'max:20'],
+                'database_id' =>['required', 'integer', 'exists:databases,id']
+            ]);
+        }else{
+            $data = request()->validate([
+                'name'=>['required', 'string', 'max:20'],
+            ]);
+            $data['database_id'] = $database;
+        }
+        $creation_date = Carbon::now();
+        //dd($database);
+        Table::create([
+            'name' => $data['name'],
+            'database_id' => $data['database_id'],
+            'creation_date' => $creation_date,
+        ]);
+        return redirect()->route('tables.index');
     }
 
     /**

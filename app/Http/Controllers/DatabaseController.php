@@ -32,18 +32,15 @@ class DatabaseController extends Controller
     public function create()
     {
         $dBEngines = DBEngine::all();
+        $collations = Collation::all();
         $projects = Project::all();
         
         for ($i=0; $i < sizeof($projects) ; $i++) { 
             if($projects[$i]->database != null){
-                unset($project[$i]);
+                unset($projects[$i]);
             }
         }
 
-        
-        
-        $collations = Collation::all();
-        //dd($dBEngines);
         return view('databases.create',[
             'dBEngines'=>$dBEngines,
             'collations'=>$collations,
@@ -69,14 +66,14 @@ class DatabaseController extends Controller
         $data = request()->validate([
             'name' => ['required', 'string', 'max:20'],
             'collation_id' =>['required', 'integer', 'exists:collations,id'],
-            'db_engine_id' => ['required', 'integer', 'exists:d_b_engines,id'],
+            'd_b_engine_id' => ['required', 'integer', 'exists:d_b_engines,id'],
             'project_id' => ['required','integer','exists:projects,id']
         ]);
         $date=Carbon::now();
         Database::create([
             'name' => $data['name'],
             'collation_id' => $data['collation_id'],
-            'db_engine_id' => $data['db_engine_id'],
+            'd_b_engine_id' => $data['d_b_engine_id'],
             'project_id' => $data['project_id'],
             'creation_date' => $date
         ]);
@@ -103,7 +100,13 @@ class DatabaseController extends Controller
      */
     public function edit(Database $database)
     {
-        //
+        $dBEngines = DBEngine::all();
+        $collations = Collation::all();
+        return view('databases.edit',[
+            'database' => $database,
+            'dBEngines'=>$dBEngines,
+            'collations'=>$collations,        
+        ]);
     }
 
     /**
@@ -115,7 +118,14 @@ class DatabaseController extends Controller
      */
     public function update(Request $request, Database $database)
     {
-        //
+        $data = request()->validate([
+            'name' => ['required', 'string', 'max:20'],
+            'collation_id' =>['required', 'integer', 'exists:collations,id'],
+            'd_b_engine_id' => ['required', 'integer', 'exists:d_b_engines,id'],
+        ]);
+
+        $database->update($data);
+        return redirect()->route('databases.index');
     }
 
     /**
@@ -126,6 +136,7 @@ class DatabaseController extends Controller
      */
     public function destroy(Database $database)
     {
-        //
+        $database->delete();
+        return redirect()->route('databases.index');
     }
 }

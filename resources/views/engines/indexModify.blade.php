@@ -7,7 +7,7 @@
             @forelse ($dBEngines as $dBEngine)
             <article class="bg-white border rounded m-4 w-25 p-4">
                 <p class="mb-1">
-                    <strong>Tipo de dato: </strong>{{$dBEngine->name}}&nbsp;&nbsp;&nbsp;                     
+                    <strong>Nombre: </strong>{{$dBEngine->name}}&nbsp;&nbsp;&nbsp;                     
                 </p>
                 <div class="d-flex justify-content-center">
                     <a href="{{ route('editDBEngine', $dBEngine ) }}" class="btn border border-warning   mx-auto">Modificar</a>

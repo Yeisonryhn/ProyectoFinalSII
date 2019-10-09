@@ -14,14 +14,17 @@ class CreateFieldsTable extends Migration
     public function up()
     {
         Schema::create('fields', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->string('name',20);
+            $table->string('name',40);
             $table->integer('length');
             $table->string('default',40)->nullable(true);
             $table->string('null',2);//Este dato se puede cambiar por integer, 0 y 1
-            $table->integer('table_id')->references('id')->on('tables')->onDelete('cascade');
-            $table->integer('datatype_id')->references('id')->on('datatypes')->onDelete('cascade');
+            $table->unsignedBigInteger('table_id');
+            $table->unsignedBigInteger('datatype_id');
             $table->timestamps();
+            $table->foreign('table_id')->references('id')->on('tables')->onDelete('cascade');
+            $table->foreign('datatype_id')->references('id')->on('datatypes')->onDelete('cascade');
         });
     }
 

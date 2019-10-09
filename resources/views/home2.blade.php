@@ -67,9 +67,8 @@
             <div class="border rounded m-2 p-4 bg-white">
                 <h3>Tablas</h3><hr>
                 <div class=" d-flex justify-content-around">
-                <a href="{{ route('createRole') }}" class="btn border border-success">Crear</a>
-                    <a href="{{ route('indexModifyRole') }}" class="btn border border-warning">Modificar</a>
-                <a href="{{route('indexDeleteRole')}}" class="btn border border-danger">Eliminar</a>
+                <a href="{{ route('tables.create') }}" class="btn border border-success">Crear</a>
+                <a href="{{ route('tables.index') }}" class="btn border border-primary">mostrar</a>
                 </div>
             </div>
         </div>
