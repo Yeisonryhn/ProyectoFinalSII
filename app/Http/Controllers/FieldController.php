@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Field;
 use App\Table;
+use App\Datatype;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class FieldController extends Controller
@@ -14,12 +15,17 @@ class FieldController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
-        $table=$request->table;
-        $fields = Field::where('table_id', "$table")->get();
+    {   
+        //dd($request->table);
+        $table=(Table::class);
+        $table=Table::where("id","$request->table")->get();
         
+        //dd($table->first->name);
+        //dd($table);
+        $fields = Field::where('table_id', $table->first()->id)->get();
+        //dd($fields);
         return view('fields.index',[
-            'table'=>$table,
+            'table'=>$table->first(),
             'fields'=>$fields
         ]);
     }
@@ -29,9 +35,16 @@ class FieldController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $datatypes=Datatype::all();
+        $table = $request->table;
+        if($table!=null) $singleTable = true;
+        return view('fields.create',[
+            'table'=>$table,
+            'datatypes' => $datatypes,
+            'singleTable' => $singleTable,
+        ]);
     }
 
     /**

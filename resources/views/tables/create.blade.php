@@ -24,14 +24,16 @@
                     
                     <div class="row">
                         <div class="col my-auto">                            
-                            <div class="row m-2">
-                            <input placeholder="{{ __('Nombre') }}" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autofocus>
+                            <div class="form-group row m-4">
+                                <label for="name" class="col-2 col-form-label">Nombre</label>
+                                <input placeholder="{{ __('Nombre') }}" type="text" class="form-control @error('name') is-invalid @enderror col" name="name" value="{{ old('name') }}" required autofocus id="name">  
                             </div>
 
                             @if ($manyDatabases)
                                 
-                            <div class="row m-2">
-                                <select class="form-control" name="database_id" id="">
+                            <div class="form-group row m-4">
+                                <label for="database_id" class="col-4 col-form-label">Pertenece a la Base de Datos</label>
+                                <select class="form-control col" name="database_id" id="database_id">
                                     @foreach ($databases as $database)
                                         <option value="{{$database->id}}">{{$database->name}}</option>
                                         

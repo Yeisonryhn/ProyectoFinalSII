@@ -3,6 +3,7 @@ Route::get('/', function () {return view('auth.login');});
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home2','HomeController@index2')->name('home2');
+Route::get('/home3','HomeController@index3')->name('home3');
 //Rutas del crud de Roles
 Route::get('roles', 'RoleController@index')->name('indexRole');
 Route::get('roles/modify', 'RoleController@indexModify')->name('indexModifyRole');

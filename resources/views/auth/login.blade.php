@@ -10,16 +10,16 @@
               </ol>
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <img src="{{ @asset('images/diagrama.png') }}" class="d-block w-100" alt="...">
-                  <div class="carousel-caption d-none d-md-block bg-square">
-                    <h5>Mision</h5>
+                  <img src="{{ @asset('images/diagrama2.jpg') }}" class=" w-100" alt="...">
+                  <div class="carousel-caption h-25 w-50 mx-auto d-none d-md-block bg-square">
+                    <h5 class="mt-2">Mision</h5>
                     <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                   </div>
                 </div>
                 <div class="carousel-item">
                   <img src="{{ @asset('images/diagrama.png') }}" class="d-block w-100" alt="...">
-                  <div class="carousel-caption d-none d-md-block bg-square">
-                    <h5>Vision</h5>
+                  <div class="carousel-caption w-50 mx-auto h-25 d-none d-md-block bg-square">
+                    <h5 class="mt-2">Vision</h5>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                   </div>
                 </div>                

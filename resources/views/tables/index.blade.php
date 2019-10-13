@@ -2,45 +2,33 @@
 @section('content')
 <section class="container">
   <h2 class="text-center text-dark m-4">Listado de Tablas</h2>
-  <table class="table w-100 mx-auto">
-    <thead>
-      <tr>
-        <th scope="col">Nombre</th>
-        <th scope="col">Fecha de Creacion</th>
-        <th scope="col">Base de Datos</th>
-        <th scope="col">Opciones</th>
-      </tr>
-    </thead>    
-    <tbody>
+  
     
     @foreach($tables as $table)
-      <tr>        
-          <td>{{$table->name}}</td>
-          <td>{{$table->creation_date}}</td>
-          <td>{{$table->database->name}}</td>
-          <td>    
+    {{--dd($table)--}}
+    <div class="card text-center w-75 pb-auto mx-auto my-4">
+        <div class="card-header">Tabla {{$table->name}}</div>
+        <div class="card-body m-2">
+          <p class="card-text text-left"><strong>Base de Datos: </strong>{{$table->database->name}} &nbsp;&nbsp;&nbsp;&nbsp; <strong>Cant. Campos: </strong>{{sizeof($table->fields)}}<br>
+                               <strong>Cliente: </strong>{{$table->database->project->client->name}}<br>
+                               <strong>Motor de Base de Datos: </strong>{{$table->database->dBEngine->name}}</p>
           <form method="POST" action="{{ route('tables.destroy',$table)}}">
-              <div class="form_control">
-                  @csrf
-                  @method('DELETE')
-                  <a href="" class="btn border border-primary">Detalle</a>
-                  <a href="{{ route('tables.edit', $table)}}" class="btn border border-warning">Modificar</a>
-                  <button type="submit" class="btn border border-danger">Eliminar</button>
-                  <a href="{{ route('fields.create', ['table'=>$table])}}" class="btn border border-primary">Agregar Campo</a>
-                  <a href="{{ route('fields.index', ['table'=>$table])}}" class="btn border border-primary">Mostrar Campos</a>
-              </div>
-          </form>
-          </td>
-      </tr> 
+            <div class="form_control">
+                @csrf
+                @method('DELETE')
+                <a href="" class="btn border border-primary mx-2">Detalle</a>
+                <a href="{{ route('tables.edit', $table)}}" class="btn border border-warning mx-2">Modificar</a>
+                <button type="submit" class="btn border border-danger mx-2">Eliminar</button>
+                <a href="{{ route('fields.create', ['table'=>$table])}}" class="btn border border-primary mx-2">Agregar Campo</a>
+                <a href="{{ route('fields.index', ['table'=>$table])}}" class="btn border border-primary mx-2">Mostrar Campos</a>
+            </div>
+        </form>
+          
+        </div>
+      </div>
     @endforeach
 
-    </tbody>
-    </table>
     
-   
-
-    <tbody></tbody>
-    </table>
     @if ( sizeof($tables) == 0)
          
       <article class="bg-white border rounded m-4 w-100 mx-auto p-4">

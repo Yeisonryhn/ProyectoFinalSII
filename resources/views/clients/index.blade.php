@@ -1,36 +1,29 @@
 @extends('layouts.app')
 @section('content')
-<section class="container">
+<section class="container ">
   <h2 class="text-center text-dark m-4">Listado de Clientes</h2>
-  <table class="table w-75 mx-auto">
-    <thead>
-      <tr>
-        <th scope="col">Nombre</th>
-        <th scope="col">Apellido</th>
-        <th scope="col">Cédula</th>
-        <th scope="col">Opciones</th>
-      </tr>
-    </thead>    
-    <tbody>
-      @foreach ($clients as $client)
-      <tr>
-        <td>{{$client->name}}</td>
-        <td>{{$client->last_name}}</td>
-        <td>{{$client->identity_card_number}}</td>
-        <td>
-          
-          <form method="POST" action="{{ route('clients.destroy',$client)}}">
-            @csrf
-            @method('DELETE')
-            <a href="" class="btn border border-primary">Detalle</a>
-            <a href="{{ route('clients.edit', $client)}}" class="btn border border-warning">Modificar</a>
-            <button type="submit" class="btn border border-danger">Eliminar</button>
-          </form>
-        </td>
-      </tr>         
-      @endforeach
-      </tbody>
-    </table>
+  <div class="d-flex flex-wrap justify-content-center">
+        @foreach ($clients as $client)
+        <div class="card text-center m-4 w-50" style="width: 18rem;">
+            <div class="card-header">Cliente {{$client->id}}</div>
+            <div class="card-body mb-2">
+              <p class="card-text"><strong>Nombre: </strong> {{$client->name}}<br>
+                                   <strong>Apellido: </strong>{{$client->last_name}}<br>
+                                   <strong>Cédula: </strong>V-{{$client->identity_card_number}}</p>
+              <form method="POST" action="{{ route('clients.destroy',$client)}}">
+                @csrf
+                @method('DELETE')
+                <a href="" class="btn border border-primary m-2">Ver Proyectos</a>
+                <a href="{{ route('clients.edit', $client)}}" class="btn border border-warning m-2">Modificar</a>
+                <button type="submit" class="btn border border-danger m-2">Eliminar</button>
+              </form>
+              
+            </div>
+          </div>
+                
+        @endforeach
+
+      </div>
     @if (sizeof($clients) == 0)
       <article class="bg-white border rounded m-4 w-75 p-4 mx-auto">
         <p class="mb-1">
